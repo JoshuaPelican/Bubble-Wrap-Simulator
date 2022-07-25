@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using ScriptableObjectArchitecture;
 
-public class Bubble : MonoBehaviour, IPointerClickHandler
+public class Bubble : MonoBehaviour
 {
     [Header("Bubble Settings")]
     [SerializeField] int ClicksToPop = 1;
@@ -18,7 +18,7 @@ public class Bubble : MonoBehaviour, IPointerClickHandler
     [SerializeField] AudioClip ClickClip;
     [SerializeField] AudioClip PopClip;
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void OnMouseDown()
     {
         if (!IsClickable)
             return;
