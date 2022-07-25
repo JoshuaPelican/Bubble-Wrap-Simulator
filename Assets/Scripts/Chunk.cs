@@ -20,7 +20,7 @@ public class Chunk : MonoBehaviour
 
     bool CheckNeighborChunk(Vector2 direction)
     {
-        return Physics2D.Raycast(transform.position, direction, CHUNK_SIZE, ChunkLayerMask);
+        return Physics2D.Raycast(transform.position, direction, transform.localScale.x * CHUNK_SIZE, ChunkLayerMask);
     }
 
     public void Enable(bool enable)

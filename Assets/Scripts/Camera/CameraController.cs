@@ -66,8 +66,6 @@ public class CameraController : MonoBehaviour
             //Zooming Desktop
             Zoom(Input.GetAxis("Mouse ScrollWheel"));
         }
-
-
     }
 
     void Zoom(float increment)

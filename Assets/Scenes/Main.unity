@@ -662,7 +662,7 @@ Camera:
   far clip plane: 1000
   field of view: 45
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb1c241f3e27a241ba87bdfeb8928bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZoomRange: {x: 1, y: 8}
+  ZoomRange: {x: 0.1, y: 1}
   MobilePinchZoomModifier: 0.01
 --- !u!1 &1745220693
 GameObject:
@@ -790,7 +790,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 40}
+  m_Size: {x: 6, y: 4.5}
   m_EdgeRadius: 0
 --- !u!114 &1745220696
 MonoBehaviour:
@@ -805,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChunkPrefab: {fileID: 7686054704482650986, guid: 63b8d3d0c4db9b34db22b7cec32a85a5, type: 3}
+  ChunkParent: {fileID: 1754475246}
 --- !u!50 &1745220697
 Rigidbody2D:
   serializedVersion: 4
