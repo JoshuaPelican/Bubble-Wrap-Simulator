@@ -4,24 +4,13 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    [SerializeField] LayerMask ChunkLayerMask;
-
     bool chunkL, chunkR, chunkT, chunkB;
-    GameObject chunkObject;
+    [SerializeField] GameObject chunkObject;
+    [SerializeField] Transform bubbleParent;
 
     const float CHUNK_SIZE = 20f;
 
-    private void Awake()
-    {
-        chunkObject = transform.GetChild(0).gameObject;
-
-
-    }
-
-    bool CheckNeighborChunk(Vector2 direction)
-    {
-        return Physics2D.Raycast(transform.position, direction, transform.localScale.x * CHUNK_SIZE, ChunkLayerMask);
-    }
+    [SerializeField] Bubble[] bubbles;
 
     public void Enable(bool enable)
     {
@@ -40,11 +29,44 @@ public class Chunk : MonoBehaviour
 
         List<Vector2> missingChunkLocations = new List<Vector2>();
 
-        if (!chunkL) missingChunkLocations.Add(Vector2.left);
-        if (!chunkR) missingChunkLocations.Add(Vector2.right);
-        if (!chunkT) missingChunkLocations.Add(Vector2.up);
-        if (!chunkB) missingChunkLocations.Add(Vector2.down);
+        if (!chunkL) missingChunkLocations.Add(Vector2.left * CHUNK_SIZE);
+        if (!chunkR) missingChunkLocations.Add(Vector2.right * CHUNK_SIZE);
+        if (!chunkT) missingChunkLocations.Add(Vector2.up * CHUNK_SIZE);
+        if (!chunkB) missingChunkLocations.Add(Vector2.down * CHUNK_SIZE);
 
         return missingChunkLocations;
+    }
+
+    bool CheckNeighborChunk(Vector2 direction)
+    {
+        return Physics2D.Raycast(transform.position, direction, transform.localScale.x * CHUNK_SIZE, 1 << 6);
+    }
+
+    public void SetPoppedBubblesInChunk(int[] indicies)
+    {
+        foreach (int index in indicies)
+        {
+            bubbles[index].SetAsPopped();
+        }
+    }
+
+    public string ChunkData
+    {
+        get
+        {
+            string chunkData = "";
+
+            chunkData += transform.position.x.ToString() + ',';
+            chunkData += transform.position.y.ToString() + ',';
+
+            foreach (Bubble bubble in bubbles)
+            {
+                chunkData += (bubble.IsPopped ? 1 : 0).ToString();
+            }
+
+            chunkData.TrimEnd(',');
+
+            return chunkData;
+        }
     }
 }

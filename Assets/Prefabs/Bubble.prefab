@@ -98,12 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89b572315a3310468e2439fec28a1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClicksToPop: 1
-  IsClickable: 1
-  NextObject: {fileID: 4905393557266242532, guid: 1555adf17a09f794eae9761d148ef594, type: 3}
-  TotalPops: {fileID: 11400000, guid: 97678a47410487d4eb743e1e9b108b8b, type: 2}
+  PoppedSprite: {fileID: -1873973154, guid: 98c83dba6dc412c458cd0c9849db2970, type: 3}
   ClickClip: {fileID: 0}
   PopClip: {fileID: 8300000, guid: 9b33c8b892103314fb2bdbdb8d1dd2cc, type: 3}
+  TotalPops: {fileID: 11400000, guid: 97678a47410487d4eb743e1e9b108b8b, type: 2}
+  spriteRenderer: {fileID: 7081807169536990689}
 --- !u!58 &9062751833790515210
 CircleCollider2D:
   m_ObjectHideFlags: 0
