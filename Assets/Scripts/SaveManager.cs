@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-
     const string SAVE_FILE_NAME = "save.txt";
     string SaveFilePath => Application.persistentDataPath + '/' + SAVE_FILE_NAME;
 

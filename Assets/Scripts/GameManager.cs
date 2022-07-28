@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Settings")]
+    [SerializeField] int AutoSaveInterval;
+
+    [Header("Managers")]
     [SerializeField] ChunkGenerator ChunkGenerator;
     [SerializeField] SaveManager SaveManager;
+
+    int t;
 
     private void Update()
     {
@@ -18,17 +24,19 @@ public class GameManager : MonoBehaviour
         LoadWorld();
     }
 
-    private void OnApplicationFocus(bool focus)
+    private void FixedUpdate()
     {
-        if (!focus)
+        t++;
+        if (t % AutoSaveInterval == 0)
         {
             SaveWorld();
+            t = 0;
         }
     }
 
-
     void InitializeWorld()
     {
+        Debug.Log("Initializing World...");
         ChunkGenerator.InitializeWorld();
     }
 
@@ -36,10 +44,12 @@ public class GameManager : MonoBehaviour
     {
         if (!SaveManager.HasSaveData)
         {
+            Debug.Log("No Save Data Found!");
             InitializeWorld();
         }
         else
         {
+            Debug.Log("Save Data Found!");
             string worldData = SaveManager.Load();
             ChunkGenerator.GenerateWorld(worldData);
         }
